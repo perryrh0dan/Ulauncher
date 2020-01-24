@@ -32,9 +32,11 @@ Known Issues
 ============
 
 * Ubuntu 14.04 is not supported since v4.0
+* If your DE doesn't use compositing, run ulauncher with `--no-window-shadow` to remove a black box around a window
 * [[Solved] inotify watch limit reached](https://github.com/Ulauncher/Ulauncher/issues/51)
 * [[Workaround exists] Can't map the keys to ALT+SPACE](https://github.com/Ulauncher/Ulauncher/issues/100)
 * [[Workaround exists] Hotkey doesn't work in Wayland when is triggered from certain apps](https://github.com/Ulauncher/Ulauncher/issues/183)
+* [[Workaround exists] Border appears around ulauncher window in Sway DE](https://github.com/Ulauncher/Ulauncher/issues/230#issuecomment-570736422)
 
 
 Code Contribution
