@@ -1,3 +1,5 @@
+import html
+
 from ulauncher.api.server.DeferredResultRenderer import DeferredResultRenderer
 from ulauncher.api.server.ExtensionServer import ExtensionServer
 from ulauncher.search.BaseSearchMode import BaseSearchMode
@@ -53,9 +55,9 @@ class ExtensionSearchMode(BaseSearchMode):
                 if not pref['value']:
                     continue
 
-                icon = c.manifest.load_icon(ExtensionKeywordResultItem.ICON_SIZE)
-                items.append(ExtensionKeywordResultItem(name=pref['name'],
-                                                        description=pref['description'],
+                icon = c.manifest.load_icon(ExtensionKeywordResultItem.get_icon_size())
+                items.append(ExtensionKeywordResultItem(name=html.escape(pref['name']),
+                                                        description=html.escape(pref['description']),
                                                         keyword=pref['value'],
                                                         icon=icon))
 

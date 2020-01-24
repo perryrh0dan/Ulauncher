@@ -3,6 +3,7 @@
 .app-box {
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.4);
 }
+
 .no-window-shadow {
-    box-shadow: none;
+    margin: -20px;
 }

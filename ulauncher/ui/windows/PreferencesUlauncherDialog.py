@@ -109,8 +109,8 @@ class PreferencesUlauncherDialog(Gtk.Dialog, WindowHelper):
 
         self.settings = Settings.get_instance()
         self._init_webview()
-        self._handle_no_window_shadow_option(self.ui['window_wrapper'])
         self.init_styles(get_data_file('styles', 'preferences.css'))
+        self._handle_no_window_shadow_option(self.ui['window_wrapper'])
         self.autostart_pref = AutostartPreference()
         self.hotkey_dialog = HotkeyDialog()
         self.hotkey_dialog.connect('hotkey-set', self.on_hotkey_set)
@@ -243,6 +243,7 @@ class PreferencesUlauncherDialog(Gtk.Dialog, WindowHelper):
             'blacklisted_desktop_dirs': self.settings.get_property('blacklisted-desktop-dirs'),
             'available_themes': self._get_available_themes(),
             'theme_name': Theme.get_current().get_name(),
+            'render_on_screen': self.settings.get_property('render-on-screen'),
             'is_wayland': is_wayland(),
             'env': {
                 'version': get_version(),
@@ -324,6 +325,13 @@ class PreferencesUlauncherDialog(Gtk.Dialog, WindowHelper):
         dirs = url_params['query']['value']
         logger.info('Set blacklisted-desktop-dirs to %s', dirs)
         self.settings.set_property('blacklisted-desktop-dirs', dirs)
+        self.settings.save_to_file()
+
+    @rt.route('/set/render-on-screen')
+    def prefs_set_render_on_screen(self, url_params):
+        selected_option = url_params['query']['value']
+        logger.info('Set render-on-screen to %s', selected_option)
+        self.settings.set_property('render-on-screen', selected_option)
         self.settings.save_to_file()
 
     @rt.route('/show/file-browser')
